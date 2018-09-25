@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <input type="text" name="number1" id="number">
+    <br/>
+    <button onclick="findMinimumCoins()">find minimum coins</button>
+    <p class="result"></p>
+    <p id="totalcoins"></p>
+    <script type="text/javascript">
+    const coins = [1, 3, 5];
+    let length = coins.length;
+    let temp;
+
+    coins.sort((a, b) => a < b);
+
+    function findMinimumCoins() {
+        var total = parseInt(document.getElementById('number').value);
+        let ans = [];
+        if (total < 1) return 0;
+        for (let i = 0; i < length; i++) {
+            res = parseInt(total / coins[i]);
+            ans.push(res);
+            total = total % coins[i];
+            temp = document.createElement('div');
+            temp.className = 'results';
+            temp.innerHTML = "we can use "+coins[i]+ " coins of "+ans[i]+" times";
+            document.getElementsByTagName('body')[0].appendChild(temp);
+
+        }
+        let sum = ans.reduce((a, b) => a + b, 0);
+        document.getElementById('totalcoins').innerHTML = "Minimum coins required is " + sum;
+   }
+    </script>
+</body>
+
+</html>
